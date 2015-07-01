@@ -41,7 +41,7 @@
 					scene = new THREE.Scene();
 					camera = new THREE.PerspectiveCamera( 30, width / height, .5, 10000 );
 					scene.add( camera );
-					camera.position.set( 0, 5, 20);
+					camera.position.set( 0, 5, 50);
 					camera.lookAt(scene.position);
 
 					renderer = new THREE.WebGLRenderer( { antialias: true } );
@@ -59,9 +59,9 @@
 					floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping; 
 					floorTexture.repeat.set( 1, 1 );
 					var floorMaterial = new THREE.MeshBasicMaterial( { map: floorTexture, side:THREE.BackSide } );
-					var floorGeometry = new THREE.PlaneBufferGeometry(100, 100, 1, 1);
+					var floorGeometry = new THREE.PlaneBufferGeometry(50, 50, 1, 1);
 					var floor = new THREE.Mesh(floorGeometry, floorMaterial);
-					floor.position.y = -3;
+					floor.position.y = -10;
 					floor.rotation.x = Math.PI / 2;
 					scene.add(floor);
 
@@ -83,11 +83,9 @@
 						depthWrite: false,
 						side: THREE.BackSide
 					});
-					// var skyboxMaterial = new THREE.MeshFaceMaterial( { map: textureCube, side: THREE.DoubleSide });
-					// var skyboxMaterial = new THREE.MeshFaceMaterial( cubemap);
 
 					// build the skybox Mesh 
-					var skyboxGeometry = new THREE.BoxGeometry( 100, 100, 100, 1, 1, 1, null, true);
+					var skyboxGeometry = new THREE.BoxGeometry( 50, 50, 50, 1, 1, 1, null, true);
 					var skybox = new THREE.Mesh( skyboxGeometry, skyboxMaterial );
 					// add it to the scene
 					scene.add(skybox);
@@ -101,7 +99,7 @@
 
 	                try {
 	                    var loader = new THREE.JSONLoader();
-	                    loader.load( "/assets/cloudgate.json", function( geometry, materials ) {
+	                    loader.load( "/assets/cloudgate_v3.json", function( geometry, materials ) {
 	                        geometry.computeBoundingBox();
 	                        console.log( geometry.boundingBox );             
 
@@ -112,6 +110,7 @@
 												});
 	                        
 	                        bean = new THREE.Mesh( geometry, myMaterial );
+	                        bean.scale.set(2,2,2);
 	                        scene.add( bean );
 
 	                        //so I know the damn thing exists.
