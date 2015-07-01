@@ -76,7 +76,7 @@
 					var shader = THREE.ShaderLib['cube']; // init cube shader from built-in lib
 					shader.uniforms['tCube'].value = cubemap; // apply textures to shader
 
-					var skyBoxMaterial = new THREE.ShaderMaterial( {
+					var skyboxMaterial = new THREE.ShaderMaterial( {
 						fragmentShader: shader.fragmentShader,
 						vertexShader: shader.vertexShader,
 						uniforms: shader.uniforms,
@@ -88,10 +88,9 @@
 
 					// build the skybox Mesh 
 					var skyboxGeometry = new THREE.BoxGeometry( 100, 100, 100, 1, 1, 1, null, true);
-					var skybox = new THREE.Mesh( skyboxGeometry, skyBoxMaterial );
+					var skybox = new THREE.Mesh( skyboxGeometry, skyboxMaterial );
 					// add it to the scene
 					scene.add(skybox);
-					bean.add(skybox);
 
 					//SKYBOX WHERE ARE YOU
 					var hexcolor = 0x00ff00;
